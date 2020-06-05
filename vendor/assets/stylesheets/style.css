@@ -34,6 +34,7 @@
 html,
 body {
 	height: 100%;
+	margin: 0;
 	font-family: "Montserrat", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
@@ -82,7 +83,7 @@ p {
 	font-weight: 400;
 	line-height: 1.6;
 	font-family: "Montserrat", sans-serif;
-	margin: 0 0 15px 0;
+	margin: 0 0 0 0;
 }
 
 img {
@@ -260,11 +261,11 @@ ol {
 -----------------------*/
 
 .header-section {
-	height: 104px;
-	padding-top: 38px;
-	padding-bottom: 24px;
-	padding-left: 45px;
-	padding-right: 45px;
+	height: 80px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .inner-header .logo {
@@ -475,7 +476,7 @@ ol {
 -----------------------*/
 
 .header-info {
-	background: #B0BCC2;
+	background: rgba(255, 0, 0, 0.733);
 	overflow: hidden;
 	padding: 10px 45px;
 }
@@ -1777,6 +1778,38 @@ ol {
 	margin-bottom: 32px;
 }
 
+.checkout-form input[type=password] {
+	width: 100%;
+	border: 0;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #E7EBED;
+	color: #838383;
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 32px;
+}
+
+.checkout-form input[type=date] {
+	width: 100%;
+	border: 0;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #E7EBED;
+	color: #838383;
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 32px;
+}
+.checkout-form input[type=email] {
+	width: 100%;
+	border: 0;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #E7EBED;
+	color: #838383;
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 32px;
+}
+
 .checkout-form .cart-select {
 	margin-bottom: 35px;
 }
@@ -2361,4 +2394,154 @@ ol {
 	.header-info {
 		padding: 10px 0;
 	}
+}
+
+.ul-order {
+	padding-bottom: 5px;
+}
+
+.ul-order h3 {
+	color: #1e1e1e;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #D0D7DB;
+}
+
+.ul-order .ul-in-name {
+	color: #616060;
+	font-size: 14px;
+	font-weight: 600;
+	text-align: right;
+	margin: 0;
+	margin-top: 18px;
+	padding-bottom: 12px;
+}
+
+.ul-order .ul-name {
+	color: #353535;
+	font-size: 18px;
+	font-weight: 500;
+	text-align: left;
+	margin: 0;
+	margin-top: 14px;
+	padding-bottom: 12px;
+}
+
+.ul-order .ul-info {
+	color: #1e1e1e;
+	background: transparent;
+	border: none;
+	font-weight: 600;
+	width: 100%;
+	padding: 12px 150px;
+	border: 2px solid #727171;
+	border-radius: 50px;
+	cursor: pointer;
+	text-transform: uppercase;
+	margin: 0;
+	margin-top: 25px;
+}
+
+.ul-order .ul-info:hover {
+	background-color: #727171;
+	color: white;
+}
+
+/* navbar */
+.nav-bar {
+	z-index: 10000;
+	overflow: hidden;
+  background-color: rgba(252, 5, 5, 0.043);
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+
+.header-section {
+	background-color: rgb(255, 255, 255);
+}
+
+.main {
+	margin-top: 150px;
+}
+
+
+/* CUSTOM FOOTER BY NICO */
+
+
+* {
+  margin: 0;
+}
+
+footer {
+	position:fixed;
+	bottom:0;
+	left:0;
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	display: flex;
+	align-items: stretch;
+	opacity: 0.95;
+	background-color: rgb(57, 57, 57); 
+	
+}
+	
+footer .copyright {
+	flex-grow: 2;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+	color: white;
+	background-color: #3e3e3ee3;
+}
+
+
+
+footer .social {
+	display: flex;
+	flex-grow: 3;
+}
+
+footer .social:hover {
+	display: flex;
+	flex-grow: 3;
+	background-color: #3700ff;
+}
+		
+
+
+footer .social:hover {
+	background-color: #222;
+}
+
+
+footer .linked {
+  background-color: #BDBDBD;
+  font-size:  1.2em;
+  width: 20%;
+}
+
+footer .face {
+	background-color: #FFC107; 
+	
+  font-size: 1.2em;
+  width: 20%;
+}
+
+footer .tweet {
+	background-color: #212121;
+	
+  font-size: 1.2em;
+  width: 20%;
+}
+
+footer .support {
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+	background-color: #D32F2F;
+  font-size: 0.8em;
+  width: 40%;
 }

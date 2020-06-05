@@ -1,4 +1,117 @@
-<%= render 'layouts/header' %>
+<%= render 'layouts/header'%>
 
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<div class="d-flex justify-content-center">
+  <div class="box px-5" style='width: 100%; min-width: 800px'>
+
+    <h2 class="text-center display-4 mb-5">Mon poképanier</h2>
+
+    <% if current_user.cart.items.count == 0 %>
+
+      <div class='row text-center'>
+        <p class= "col-6 offset-3 lead">Votre poképanier est vide :(.</p>
+      </div>
+
+    <% else %>
+
+      <div class="cart-page">
+        <div class="cart-table text-center">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" style="width: 20%">Pokémon</th>
+                <th scope="col" style="width: 30%">Modification</th>
+                <th scope="col" style="width: 15%">Prix</th>
+                <th scope="col" style="width: 15%">Quantité</th>
+                <th scope="col" style="width: 15%">Prix du lot</th>
+                <th scope="col" style="width: 5%">X</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% occurence = 1 %>
+              <% current_user.cart.items.sort.each_with_index do |item, index| %>
+                <% if current_user.cart.items.sort[index + 1] && item == current_user.cart.items.sort[index + 1] %>
+                  <% occurence += 1 %>
+                  <% next %>
+                <% else %>
+                  <tr>
+                    <td class="align-middle"><img src="<%= item.image_url %>" class="card-img-top" alt="Card image cap" style="width: 40%;"></td>
+                    <td class="align-middle">
+
+                      <%= form_tag({controller: "carts", action: "edit"}, method: "get") do %>
+                      <div id='<%= item.id %>'>
+                        <div class="product-content pt-3">
+                          <div class="pc-meta mb-0">
+                            <div class="product-quantity align-middle">
+                              <div class="pro-qty" style='height: 40px; width: 110px'>
+                                <span class="dec qtybtn" id="minus <%= item.id %>">-</span>
+                                  <%= text_field_tag 'number_item', occurence, min: 1, class: 'input', style: 'height: 38px;' %>
+                                <span class="inc qtybtn" id="plus <%= item.id %>">+</span>
+                              </div>
+                            </div>
+                            <%= hidden_field_tag(:item_id, item.id) %>
+                            <%= button_tag "Modifier", type: :submit, :class => 'btn primary-btn pc-btn align-middle', style: 'font-size: 16px; height: 42px; padding: 0px 10px;' %>
+                          </div>
+                        </div>
+                        </div>
+                      <% end %>
+
+                    </td>
+                    <td class="align-middle"><%= item.price %>€</td>
+                    <td class="align-middle"><%= occurence %></td>
+                    <td class="align-middle total"><%= item.price * occurence %>€</td>
+                    <% occurence = 1 %>
+                    <td class="align-middle">
+                      <%= link_to 'X', cart_path(item_id: item.id), method: :delete, data: { confirm: 'Êtes-vous certain(e) de retirer ce pokémon du panier ?' }, class: "product-close" %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    <% end %>
+
+    <hr class='mb-0'>
+
+    <div class="cart-page">
+      <div class="cart-table text-center">
+        <table>
+          <tbody>
+            <tr>
+              <td scope="col" style="width: 20%" class="align-middle py-3"></td>
+              <td scope="col" style="width: 30%" class="align-middle py-3"></td>
+              <td scope="col" style="width: 15%" class="align-middle py-3"></td>
+              <td scope="col" style="width: 15%" class="align-middle py-3"><%= current_user.cart.items.count %></td>
+              <td scope="col" style="width: 15%" class="align-middle total py-3"><%= current_user.cart.total_price %>€</td>
+              <td scope="col" style="width: 5%" class="align-middle py-3"></td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class='mt-0'>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class='cart-page total-info my-4 mx-5 text-right'>
+  <%= link_to "Passer la commande", new_order_path(@cart),  class: "primary-btn chechout-btn mx-5"%>
+</div>
+
+<script>
+  <% current_user.cart.items.each do |item| %>
+    {
+      let input = document.getElementById('<%= item.id %>').getElementsByTagName('input')[0];
+      document.getElementById('plus <%= item.id %>').onclick = function(){
+        input.value = parseInt(input.value, 10) + 1;
+      }
+      document.getElementById('minus <%= item.id %>').onclick = function(){
+        if (input.value > 1) {
+          input.value = parseInt(input.value, 10) - 1;
+        }
+      }
+    }
+  <% end %>
+</script>
